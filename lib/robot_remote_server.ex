@@ -5,6 +5,7 @@ defmodule RobotRemoteServerEx do
     :__info__,
     :module_info,
     :get_keyword_names,
+    :get_keyword_types,
     :get_keyword_documentation,
     :get_keyword_arguments,
     :init,
@@ -37,6 +38,10 @@ defmodule RobotRemoteServerEx do
   ###########################################################################
 
   #functions here
+  @spec print_to_elixir_console() :: :ok
+  def print_to_elixir_console() do
+    IO.puts "YOLO"
+  end
 
   ###########################################################################
   ###
@@ -52,6 +57,8 @@ defmodule RobotRemoteServerEx do
   def run_keyword(function, args) do
     :erlang.apply(__MODULE__, String.to_atom(function), args)
   end
+
+  def get_keyword_types(_), do: []
 
   def get_keyword_names do
     Enum.reject(

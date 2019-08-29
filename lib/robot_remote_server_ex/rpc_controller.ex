@@ -2,8 +2,7 @@ defmodule RobotRemoteServerEx.RpcController do
   #use HTTPoison.Base
 
   def index(conn) do
-    {_adapter, state} = conn.adapter
-    body = elem(state, 21)
+    {:ok, body, _conn} = Plug.Conn.read_body(conn)
     {:ok, decoded} = XMLRPC.decode(body)
     function = String.to_atom(decoded.method_name)
     result = :erlang.apply(RobotRemoteServerEx, function, decoded.params)

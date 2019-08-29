@@ -24,8 +24,8 @@ defmodule RobotRemoteServerEx.Mixfile do
 
   def application do
     [
-      applications: [],
-      mod: {RobotRemoteServerSup, []}
+      applications: [:ranch],
+      mod: {RobotRemoteServerEx.Sup, []}
     ]
   end
 
